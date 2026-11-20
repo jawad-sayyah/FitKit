@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Minus, Plus, Trash2 } from "lucide-react";
-import { products } from "../data/products";
-import { formatPrice } from "../utils/format";
+import { products } from "@/data/products";
+import { formatPrice } from "@/utils/format";
 import PageHeader from "../components/ui/PageHeader";
 
 // DESIGN ONLY: hard-coded dummy cart. Replace with the cart store in the logic phase.
@@ -11,13 +11,19 @@ const dummyCart = [
 ];
 
 export default function Cart() {
-  const subtotal = dummyCart.reduce((sum, i) => sum + i.product.price * i.quantity, 0);
+  const subtotal = dummyCart.reduce(
+    (sum, i) => sum + i.product.price * i.quantity,
+    0,
+  );
   const shipping = subtotal > 75 ? 0 : 6.99;
   const total = subtotal + shipping;
 
   return (
     <>
-      <PageHeader title="Your cart" subtitle={`${dummyCart.length} items ready for checkout`} />
+      <PageHeader
+        title="Your cart"
+        subtitle={`${dummyCart.length} items ready for checkout`}
+      />
 
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:grid-cols-[1fr_380px]">
         <section>
@@ -31,36 +37,59 @@ export default function Cart() {
           <ul className="divide-y divide-line rounded-2xl border border-line">
             {dummyCart.map(({ product, quantity }) => (
               <li key={product.id} className="flex gap-4 p-4 sm:gap-6 sm:p-5">
-                <div className={`h-24 w-24 shrink-0 rounded-xl bg-gradient-to-br sm:h-28 sm:w-28 ${product.tone}`} />
+                <div
+                  className={`h-24 w-24 shrink-0 rounded-xl bg-gradient-to-br sm:h-28 sm:w-28 ${product.tone}`}
+                />
 
                 <div className="flex flex-1 flex-col justify-between">
                   <div className="flex justify-between gap-4">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-ink/50">{product.category}</p>
-                      <h3 className="font-sans text-base font-semibold normal-case tracking-normal">{product.name}</h3>
-                      <p className="text-sm text-ink/60">{formatPrice(product.price)} each</p>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-ink/50">
+                        {product.category}
+                      </p>
+                      <h3 className="font-sans text-base font-semibold normal-case tracking-normal">
+                        {product.name}
+                      </h3>
+                      <p className="text-sm text-ink/60">
+                        {formatPrice(product.price)} each
+                      </p>
                     </div>
-                    <p className="text-lg font-bold">{formatPrice(product.price * quantity)}</p>
+                    <p className="text-lg font-bold">
+                      {formatPrice(product.price * quantity)}
+                    </p>
                   </div>
 
                   <div className="flex items-center justify-between">
                     <div className="flex items-center rounded-full border border-line">
-                      <button className="p-2 hover:text-flame" aria-label="Decrease quantity">
+                      <button
+                        className="p-2 hover:text-flame"
+                        aria-label="Decrease quantity"
+                      >
                         <Minus size={16} />
                       </button>
-                      <span className="w-8 text-center text-sm font-semibold">{quantity}</span>
-                      <button className="p-2 hover:text-flame" aria-label="Increase quantity">
+                      <span className="w-8 text-center text-sm font-semibold">
+                        {quantity}
+                      </span>
+                      <button
+                        className="p-2 hover:text-flame"
+                        aria-label="Increase quantity"
+                      >
                         <Plus size={16} />
                       </button>
                     </div>
-                    <button className="text-sm text-ink/50 hover:text-flame">Remove</button>
+                    <button className="text-sm text-ink/50 hover:text-flame">
+                      Remove
+                    </button>
                   </div>
                 </div>
               </li>
             ))}
           </ul>
 
-          <Link to="/products" className="mt-6 inline-block text-sm font-semibold underline underline-offset-4 hover:text-volt-dark">
+          <Link
+            to="/products"
+            className="mt-6 inline-block text-sm font-semibold underline underline-offset-4 hover:text-volt-dark"
+          >
             ← Continue shopping
           </Link>
         </section>
@@ -75,7 +104,9 @@ export default function Cart() {
             </div>
             <div className="flex justify-between">
               <dt className="text-ink/60">Shipping</dt>
-              <dd className="font-semibold">{shipping === 0 ? "Free" : formatPrice(shipping)}</dd>
+              <dd className="font-semibold">
+                {shipping === 0 ? "Free" : formatPrice(shipping)}
+              </dd>
             </div>
             <div className="flex justify-between border-t border-line pt-4 text-base">
               <dt className="font-bold">Total</dt>
