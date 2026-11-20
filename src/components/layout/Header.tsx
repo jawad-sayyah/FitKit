@@ -39,7 +39,10 @@ export default function Header() {
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
 
-        <Link to="/" className="font-display text-3xl font-extrabold uppercase tracking-tight">
+        <Link
+          to="/"
+          className="font-display text-3xl font-extrabold uppercase tracking-tight"
+        >
           Fit<span className="text-volt">Kit</span>
         </Link>
 
@@ -68,7 +71,10 @@ export default function Header() {
         <div className="ml-auto flex items-center gap-5 md:ml-2">
           <Link to="/wishlist" className="relative" aria-label="Wishlist">
             <Heart size={22} />
-            <CountBadge count={DUMMY_WISHLIST_COUNT} tone="bg-flame text-white" />
+            <CountBadge
+              count={DUMMY_WISHLIST_COUNT}
+              tone="bg-flame text-white"
+            />
           </Link>
           <Link to="/cart" className="relative" aria-label="Cart">
             <ShoppingBag size={22} />

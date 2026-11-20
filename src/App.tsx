@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
 import Home from "@/pages/Home";
 
-
 import Products from "@/pages/Products";
 import Cart from "@/pages/Cart";
 import Wishlist from "@/pages/Wishlist";

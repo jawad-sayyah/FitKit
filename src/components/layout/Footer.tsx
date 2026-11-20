@@ -38,26 +38,36 @@ export default function Footer() {
             Fit<span className="text-volt">Kit</span>
           </p>
           <p className="mt-3 max-w-sm text-sm text-white/60">
-            Gear built for the grind. Equipment, apparel and accessories to help you train harder and recover
-            smarter.
+            Gear built for the grind. Equipment, apparel and accessories to help
+            you train harder and recover smarter.
           </p>
-          <form className="mt-6 flex max-w-sm overflow-hidden rounded-full bg-white/10" onSubmit={(e) => e.preventDefault()}>
+          <form
+            className="mt-6 flex max-w-sm overflow-hidden rounded-full bg-white/10"
+            onSubmit={(e) => e.preventDefault()}
+          >
             <input
               type="email"
               placeholder="Join the newsletter"
               className="w-full bg-transparent px-4 py-3 text-sm outline-none placeholder:text-white/50"
             />
-            <button className="bg-volt px-5 text-sm font-bold uppercase text-ink hover:bg-volt-dark">Join</button>
+            <button className="bg-volt px-5 text-sm font-bold uppercase text-ink hover:bg-volt-dark">
+              Join
+            </button>
           </form>
         </div>
 
         {columns.map((col) => (
           <div key={col.title}>
-            <h3 className="text-lg font-bold tracking-wide text-volt">{col.title}</h3>
+            <h3 className="text-lg font-bold tracking-wide text-volt">
+              {col.title}
+            </h3>
             <ul className="mt-4 space-y-2">
               {col.links.map((l) => (
                 <li key={l.label}>
-                  <Link to={l.to} className="text-sm text-white/60 hover:text-white">
+                  <Link
+                    to={l.to}
+                    className="text-sm text-white/60 hover:text-white"
+                  >
                     {l.label}
                   </Link>
                 </li>

@@ -9,7 +9,13 @@ interface Props {
   ctaTo: string;
 }
 
-export default function EmptyState({ icon, title, message, ctaLabel, ctaTo }: Props) {
+export default function EmptyState({
+  icon,
+  title,
+  message,
+  ctaLabel,
+  ctaTo,
+}: Props) {
   return (
     <div className="mx-auto flex max-w-md flex-col items-center rounded-2xl border border-dashed border-line bg-mist px-6 py-14 text-center">
       <div className="mb-4 text-ink/40">{icon}</div>

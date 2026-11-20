@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, RotateCcw, ShieldCheck, Truck } from "lucide-react";
-import { categories, featuredProducts } from "../data/products";
-import ProductCard from "../components/ui/ProductCard";
-import SectionHeading from "../components/ui/SectionHeading";
+import { categories, featuredProducts } from "@/data/products";
+import ProductCard from "@/components/ui/ProductCard";
+import SectionHeading from "@/components/ui/SectionHeading";
 
 const perks = [
   { icon: Truck, title: "Free Delivery", text: "On all orders over $75" },
@@ -28,7 +28,8 @@ export default function Home() {
               <span className="text-volt">Gear up.</span>
             </h1>
             <p className="mt-6 max-w-md text-lg text-white/70">
-              Premium fitness equipment, apparel and accessories built for every rep, run and recovery day.
+              Premium fitness equipment, apparel and accessories built for every
+              rep, run and recovery day.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
@@ -47,9 +48,9 @@ export default function Home() {
           </div>
 
           {/* Decorative hero collage (placeholder for real imagery) */}
-          <div className="relative hidden h-[420px] lg:block">
-            <div className="absolute right-0 top-0 h-64 w-64 rotate-6 rounded-3xl bg-gradient-to-br from-volt to-lime-200" />
-            <div className="absolute bottom-0 left-8 h-72 w-60 -rotate-6 rounded-3xl bg-gradient-to-br from-flame to-orange-300" />
+          <div className="relative hidden h-105 lg:block">
+            <div className="absolute right-0 top-0 h-64 w-64 rotate-6 rounded-3xl bg-linear-to-br from-volt to-lime-200" />
+            <div className="absolute bottom-0 left-8 h-72 w-60 -rotate-6 rounded-3xl bg-linear-to-br from-flame to-orange-300" />
             <div className="absolute left-1/2 top-1/2 flex h-56 w-56 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-8 border-ink bg-steel font-display text-6xl font-extrabold text-volt">
               FK
             </div>
@@ -76,15 +77,19 @@ export default function Home() {
 
       {/* Categories */}
       <section className="mx-auto max-w-7xl px-4 pt-16">
-        <SectionHeading eyebrow="Browse" title="Shop by category" linkTo="/products" />
+        <SectionHeading
+          eyebrow="Browse"
+          title="Shop by category"
+          linkTo="/products"
+        />
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
           {categories.map((c) => (
             <Link
               key={c.id}
               to={`/products?category=${c.id}`}
-              className={`group relative flex aspect-[3/4] flex-col justify-end overflow-hidden rounded-2xl bg-gradient-to-br ${c.tone} p-5 text-white`}
+              className={`group relative flex aspect-3/4 flex-col justify-end overflow-hidden rounded-2xl bg-linear-to-br ${c.tone} p-5 text-white`}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
               <div className="relative">
                 <h3 className="text-3xl font-extrabold">{c.name}</h3>
                 <p className="text-sm text-white/80">{c.tagline}</p>
@@ -99,7 +104,11 @@ export default function Home() {
 
       {/* Featured products */}
       <section className="mx-auto max-w-7xl px-4 pt-20">
-        <SectionHeading eyebrow="Trending" title="Featured products" linkTo="/products" />
+        <SectionHeading
+          eyebrow="Trending"
+          title="Featured products"
+          linkTo="/products"
+        />
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
           {featuredProducts.map((p) => (
             <ProductCard key={p.id} product={p} />
@@ -111,7 +120,9 @@ export default function Home() {
       <section className="mx-auto mt-20 max-w-7xl px-4">
         <div className="relative overflow-hidden rounded-3xl bg-volt px-8 py-14 text-ink sm:px-14">
           <div className="absolute -right-10 -top-10 h-56 w-56 rounded-full bg-ink/10" />
-          <p className="text-xs font-bold uppercase tracking-[0.2em]">Limited time</p>
+          <p className="text-xs font-bold uppercase tracking-[0.2em]">
+            Limited time
+          </p>
           <h2 className="mt-2 max-w-xl text-5xl font-extrabold leading-none sm:text-6xl">
             Save up to 25% on strength gear
           </h2>

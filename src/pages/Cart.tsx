@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import { products } from "@/data/products";
 import { formatPrice } from "@/utils/format";
-import PageHeader from "../components/ui/PageHeader";
+import PageHeader from "@/components/ui/PageHeader";
 
 // DESIGN ONLY: hard-coded dummy cart. Replace with the cart store in the logic phase.
 const dummyCart = [
@@ -38,7 +38,7 @@ export default function Cart() {
             {dummyCart.map(({ product, quantity }) => (
               <li key={product.id} className="flex gap-4 p-4 sm:gap-6 sm:p-5">
                 <div
-                  className={`h-24 w-24 shrink-0 rounded-xl bg-gradient-to-br sm:h-28 sm:w-28 ${product.tone}`}
+                  className={`h-24 w-24 shrink-0 rounded-xl bg-linear-to-br sm:h-28 sm:w-28 ${product.tone}`}
                 />
 
                 <div className="flex flex-1 flex-col justify-between">

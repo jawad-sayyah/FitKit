@@ -1,6 +1,6 @@
 import { Heart, ShoppingBag, Star } from "lucide-react";
-import type { Product } from "../../types";
-import { formatPrice } from "../../utils/format";
+import type { Product } from "@/types";
+import { formatPrice } from "@/utils/format";
 
 interface Props {
   product: Product;
@@ -16,10 +16,17 @@ const badgeStyles: Record<NonNullable<Product["badge"]>, string> = {
   "Best Seller": "bg-ink text-white",
 };
 
-export default function ProductCard({ product, onAddToCart, onToggleWishlist, isWishlisted = false }: Props) {
+export default function ProductCard({
+  product,
+  onAddToCart,
+  onToggleWishlist,
+  isWishlisted = false,
+}: Props) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-line bg-white transition hover:shadow-xl">
-      <div className={`relative aspect-square overflow-hidden bg-gradient-to-br ${product.tone}`}>
+      <div
+        className={`relative aspect-square overflow-hidden bg-linear-to-br ${product.tone}`}
+      >
         {/* Placeholder visual; swap for <img src={product.image} /> later */}
         <span className="absolute inset-0 flex items-center justify-center font-display text-6xl font-extrabold uppercase text-white/25 transition group-hover:scale-110">
           {product.category}
@@ -38,12 +45,17 @@ export default function ProductCard({ product, onAddToCart, onToggleWishlist, is
           aria-label="Toggle wishlist"
           className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-ink shadow transition hover:bg-white"
         >
-          <Heart size={18} className={isWishlisted ? "fill-flame text-flame" : ""} />
+          <Heart
+            size={18}
+            className={isWishlisted ? "fill-flame text-flame" : ""}
+          />
         </button>
       </div>
 
       <div className="flex flex-1 flex-col p-4">
-        <p className="text-xs font-semibold uppercase tracking-wider text-ink/50">{product.category}</p>
+        <p className="text-xs font-semibold uppercase tracking-wider text-ink/50">
+          {product.category}
+        </p>
         <h3 className="mt-1 font-sans text-base font-semibold normal-case leading-snug tracking-normal">
           {product.name}
         </h3>
@@ -55,9 +67,13 @@ export default function ProductCard({ product, onAddToCart, onToggleWishlist, is
         </div>
 
         <div className="mt-3 flex items-baseline gap-2">
-          <span className="text-lg font-bold">{formatPrice(product.price)}</span>
+          <span className="text-lg font-bold">
+            {formatPrice(product.price)}
+          </span>
           {product.oldPrice && (
-            <span className="text-sm text-ink/40 line-through">{formatPrice(product.oldPrice)}</span>
+            <span className="text-sm text-ink/40 line-through">
+              {formatPrice(product.oldPrice)}
+            </span>
           )}
         </div>
 

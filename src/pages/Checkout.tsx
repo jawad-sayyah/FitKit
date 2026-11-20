@@ -1,6 +1,6 @@
-import { products } from "../data/products";
-import { formatPrice } from "../utils/format";
-import PageHeader from "../components/ui/PageHeader";
+import { products } from "@/data/products";
+import { formatPrice } from "@/utils/format";
+import PageHeader from "@/components/ui/PageHeader";
 
 // DESIGN ONLY: dummy order lines, no validation, no submit logic.
 // Logic phase: Zod schema + inline error messages (shown under each field), block when cart is empty.
@@ -17,7 +17,13 @@ interface FieldProps {
   className?: string;
 }
 
-function Field({ label, name, placeholder, type = "text", className = "" }: FieldProps) {
+function Field({
+  label,
+  name,
+  placeholder,
+  type = "text",
+  className = "",
+}: FieldProps) {
   return (
     <div className={className}>
       <label htmlFor={name} className="mb-1.5 block text-sm font-semibold">
@@ -36,11 +42,17 @@ function Field({ label, name, placeholder, type = "text", className = "" }: Fiel
 }
 
 export default function Checkout() {
-  const subtotal = dummyCart.reduce((s, i) => s + i.product.price * i.quantity, 0);
+  const subtotal = dummyCart.reduce(
+    (s, i) => s + i.product.price * i.quantity,
+    0,
+  );
 
   return (
     <>
-      <PageHeader title="Checkout" subtitle="Enter your delivery details. No real payment is taken." />
+      <PageHeader
+        title="Checkout"
+        subtitle="Enter your delivery details. No real payment is taken."
+      />
 
       <form
         className="mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:grid-cols-[1fr_380px]"
@@ -52,18 +64,43 @@ export default function Checkout() {
             <h2 className="mb-5 text-3xl font-bold">Contact</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label="Full name" name="fullName" placeholder="Jane Doe" />
-              <Field label="Phone" name="phone" placeholder="+1 555 000 0000" type="tel" />
-              <Field label="Email" name="email" placeholder="jane@example.com" type="email" className="sm:col-span-2" />
+              <Field
+                label="Phone"
+                name="phone"
+                placeholder="+1 555 000 0000"
+                type="tel"
+              />
+              <Field
+                label="Email"
+                name="email"
+                placeholder="jane@example.com"
+                type="email"
+                className="sm:col-span-2"
+              />
             </div>
           </section>
 
           <section className="rounded-2xl border border-line p-6">
             <h2 className="mb-5 text-3xl font-bold">Delivery address</h2>
             <div className="grid gap-4 sm:grid-cols-2">
-              <Field label="Street address" name="address" placeholder="123 Main Street" className="sm:col-span-2" />
+              <Field
+                label="Street address"
+                name="address"
+                placeholder="123 Main Street"
+                className="sm:col-span-2"
+              />
               <Field label="City" name="city" placeholder="City" />
-              <Field label="Postal code" name="postalCode" placeholder="12345" />
-              <Field label="Country" name="country" placeholder="Country" className="sm:col-span-2" />
+              <Field
+                label="Postal code"
+                name="postalCode"
+                placeholder="12345"
+              />
+              <Field
+                label="Country"
+                name="country"
+                placeholder="Country"
+                className="sm:col-span-2"
+              />
             </div>
           </section>
 
@@ -80,12 +117,16 @@ export default function Checkout() {
           <ul className="mt-5 space-y-4">
             {dummyCart.map(({ product, quantity }) => (
               <li key={product.id} className="flex items-center gap-3">
-                <div className={`h-14 w-14 shrink-0 rounded-lg bg-gradient-to-br ${product.tone}`} />
+                <div
+                  className={`h-14 w-14 shrink-0 rounded-lg bg-linear-to-br ${product.tone}`}
+                />
                 <div className="flex-1 text-sm">
                   <p className="font-semibold">{product.name}</p>
                   <p className="text-ink/60">Qty {quantity}</p>
                 </div>
-                <p className="text-sm font-bold">{formatPrice(product.price * quantity)}</p>
+                <p className="text-sm font-bold">
+                  {formatPrice(product.price * quantity)}
+                </p>
               </li>
             ))}
           </ul>
@@ -97,7 +138,9 @@ export default function Checkout() {
             </div>
             <div className="flex justify-between text-base">
               <span className="font-bold">Total</span>
-              <span className="text-xl font-extrabold">{formatPrice(subtotal)}</span>
+              <span className="text-xl font-extrabold">
+                {formatPrice(subtotal)}
+              </span>
             </div>
           </div>
 

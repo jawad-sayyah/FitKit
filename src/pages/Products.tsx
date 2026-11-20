@@ -1,7 +1,7 @@
 import { SlidersHorizontal } from "lucide-react";
-import { categories, products } from "../data/products";
-import PageHeader from "../components/ui/PageHeader";
-import ProductCard from "../components/ui/ProductCard";
+import { categories, products } from "@/data/products";
+import PageHeader from "@/components/ui/PageHeader";
+import ProductCard from "@/components/ui/ProductCard";
 
 /**
  * DESIGN ONLY: the filters below are visual placeholders and the grid shows
@@ -11,7 +11,10 @@ import ProductCard from "../components/ui/ProductCard";
 export default function Products() {
   return (
     <>
-      <PageHeader title="Shop all" subtitle="Everything you need to train, recover and perform." />
+      <PageHeader
+        title="Shop all"
+        subtitle="Everything you need to train, recover and perform."
+      />
 
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:grid-cols-[260px_1fr]">
         {/* Filters sidebar */}
@@ -36,13 +39,24 @@ export default function Products() {
             <ul className="space-y-2">
               <li>
                 <label className="flex cursor-pointer items-center gap-3 text-sm">
-                  <input type="radio" name="category" defaultChecked className="accent-ink" /> All
+                  <input
+                    type="radio"
+                    name="category"
+                    defaultChecked
+                    className="accent-ink"
+                  />{" "}
+                  All
                 </label>
               </li>
               {categories.map((c) => (
                 <li key={c.id}>
                   <label className="flex cursor-pointer items-center gap-3 text-sm">
-                    <input type="radio" name="category" className="accent-ink" /> {c.name}
+                    <input
+                      type="radio"
+                      name="category"
+                      className="accent-ink"
+                    />{" "}
+                    {c.name}
                   </label>
                 </li>
               ))}
@@ -51,7 +65,9 @@ export default function Products() {
 
           {/* TODO: filter by price range */}
           <div>
-            <h3 className="mb-3 text-sm font-bold tracking-wider">Price range</h3>
+            <h3 className="mb-3 text-sm font-bold tracking-wider">
+              Price range
+            </h3>
             <div className="flex items-center gap-2">
               <input
                 type="number"
@@ -76,7 +92,9 @@ export default function Products() {
         <section>
           <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
             <p className="text-sm text-ink/60">
-              Showing <span className="font-semibold text-ink">{products.length}</span> products
+              Showing{" "}
+              <span className="font-semibold text-ink">{products.length}</span>{" "}
+              products
             </p>
             {/* TODO: sort by price */}
             <select className="rounded-lg border border-line px-4 py-2.5 text-sm outline-none focus:border-ink">
