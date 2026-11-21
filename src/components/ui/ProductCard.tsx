@@ -1,13 +1,10 @@
 import { Heart, ShoppingBag, Star } from "lucide-react";
 import type { Product } from "@/types";
 import { formatPrice } from "@/utils/format";
-
+import { useFavorites } from "@/providers/FavoritesContext";
 interface Props {
   product: Product;
-  // Logic phase: wire these up. They are optional so the design works standalone.
   onAddToCart?: (product: Product) => void;
-  onToggleWishlist?: (product: Product) => void;
-  isWishlisted?: boolean;
 }
 
 const badgeStyles: Record<NonNullable<Product["badge"]>, string> = {
@@ -16,12 +13,8 @@ const badgeStyles: Record<NonNullable<Product["badge"]>, string> = {
   "Best Seller": "bg-ink text-white",
 };
 
-export default function ProductCard({
-  product,
-  onAddToCart,
-  onToggleWishlist,
-  isWishlisted = false,
-}: Props) {
+export default function ProductCard({ product, onAddToCart }: Props) {
+  const { isFavorite, toggleFavorite } = useFavorites();
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-line bg-white transition hover:shadow-xl">
       <div
@@ -41,13 +34,13 @@ export default function ProductCard({
         )}
 
         <button
-          onClick={() => onToggleWishlist?.(product)}
+          onClick={() => toggleFavorite(product.id)}
           aria-label="Toggle wishlist"
           className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-ink shadow transition hover:bg-white"
         >
           <Heart
             size={18}
-            className={isWishlisted ? "fill-flame text-flame" : ""}
+            className={isFavorite(product.id) ? "fill-flame text-flame" : ""}
           />
         </button>
       </div>

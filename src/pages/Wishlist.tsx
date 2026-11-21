@@ -3,11 +3,11 @@ import { products } from "@/data/products";
 import PageHeader from "@/components/ui/PageHeader";
 import ProductCard from "@/components/ui/ProductCard";
 import EmptyState from "@/components/ui/EmptyState";
-
-// DESIGN ONLY: dummy saved items. Replace with the wishlist store in the logic phase.
-const dummyWishlist = [products[2], products[9], products[12]];
+import { useFavorites } from "@/providers/FavoritesContext";
 
 export default function Wishlist() {
+  const { favorites } = useFavorites();
+  const wishlist_data = products.filter((p) => favorites.includes(p.id));
   return (
     <>
       <PageHeader
@@ -16,10 +16,10 @@ export default function Wishlist() {
       />
 
       <div className="mx-auto max-w-7xl px-4 py-10">
-        {dummyWishlist.length > 0 ? (
+        {favorites.length > 0 ? (
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
-            {dummyWishlist.map((p) => (
-              <ProductCard key={p.id} product={p} isWishlisted />
+            {wishlist_data.map((p) => (
+              <ProductCard key={p.id} product={p} />
             ))}
           </div>
         ) : (

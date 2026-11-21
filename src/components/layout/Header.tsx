@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Heart, Menu, Search, ShoppingBag, X } from "lucide-react";
+import { useFavorites } from "@/providers/FavoritesContext";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -11,8 +12,6 @@ const navLinks = [
 ];
 
 // TODO (logic phase): replace these dummy counts with the cart / wishlist store.
-const DUMMY_CART_COUNT = 2;
-const DUMMY_WISHLIST_COUNT = 3;
 
 function CountBadge({ count, tone }: { count: number; tone: string }) {
   if (count === 0) return null;
@@ -27,6 +26,9 @@ function CountBadge({ count, tone }: { count: number; tone: string }) {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const { favorites } = useFavorites();
+  const DUMMY_CART_COUNT = 2;
+  const WISHLIST_COUNT = favorites.length;
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-ink text-white">
@@ -71,10 +73,7 @@ export default function Header() {
         <div className="ml-auto flex items-center gap-5 md:ml-2">
           <Link to="/wishlist" className="relative" aria-label="Wishlist">
             <Heart size={22} />
-            <CountBadge
-              count={DUMMY_WISHLIST_COUNT}
-              tone="bg-flame text-white"
-            />
+            <CountBadge count={WISHLIST_COUNT} tone="bg-flame text-white" />
           </Link>
           <Link to="/cart" className="relative" aria-label="Cart">
             <ShoppingBag size={22} />
