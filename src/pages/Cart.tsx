@@ -3,88 +3,112 @@ import { Minus, Plus, Trash2 } from "lucide-react";
 import { products } from "@/data/products";
 import { formatPrice } from "@/utils/format";
 import PageHeader from "@/components/ui/PageHeader";
-
-// DESIGN ONLY: hard-coded dummy cart. Replace with the cart store in the logic phase.
-const dummyCart = [
-  { product: products[0], quantity: 1 },
-  { product: products[7], quantity: 2 },
-];
+import { useCart } from "@/providers/CartContext";
 
 export default function Cart() {
-  const subtotal = dummyCart.reduce(
-    (sum, i) => sum + i.product.price * i.quantity,
+  const { cart, updateQuantity, removeFromCart, clearCart } = useCart();
+
+  // Merge cart items (id + quantity) with product data
+  const cart_data = cart.map((item) => ({
+    product: products.find((p) => p.id === item.id)!,
+    quantity: item.quantity,
+  }));
+
+  const subtotal = cart_data.reduce(
+    (sum, { product, quantity }) => sum + product.price * quantity,
     0,
   );
-  const shipping = subtotal > 75 ? 0 : 6.99;
+  const shipping = subtotal > 75 || subtotal === 0 ? 0 : 6.99;
   const total = subtotal + shipping;
 
   return (
     <>
       <PageHeader
         title="Your cart"
-        subtitle={`${dummyCart.length} items ready for checkout`}
+        subtitle={`${cart_data.length} items ready for checkout`}
       />
 
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:grid-cols-[1fr_380px]">
         <section>
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-2xl font-bold">Items</h2>
-            <button className="flex items-center gap-1 text-sm font-semibold text-flame hover:underline">
-              <Trash2 size={16} /> Clear cart
-            </button>
+            {cart_data.length > 0 && (
+              <button
+                onClick={clearCart}
+                className="flex items-center gap-1 text-sm font-semibold text-flame hover:underline cursor-pointer"
+              >
+                <Trash2 size={16} /> Clear cart
+              </button>
+            )}
           </div>
 
-          <ul className="divide-y divide-line rounded-2xl border border-line">
-            {dummyCart.map(({ product, quantity }) => (
-              <li key={product.id} className="flex gap-4 p-4 sm:gap-6 sm:p-5">
-                <div
-                  className={`h-24 w-24 shrink-0 rounded-xl bg-linear-to-br sm:h-28 sm:w-28 ${product.tone}`}
-                />
+          {cart_data.length === 0 ? (
+            <p className="rounded-2xl border border-line p-8 text-center text-ink/60">
+              Your cart is empty.
+            </p>
+          ) : (
+            <ul className="divide-y divide-line rounded-2xl border border-line">
+              {cart_data.map(({ product, quantity }) => (
+                <li key={product.id} className="flex gap-4 p-4 sm:gap-6 sm:p-5">
+                  <div
+                    className={`h-24 w-24 shrink-0 rounded-xl bg-linear-to-br sm:h-28 sm:w-28 ${product.tone}`}
+                  />
 
-                <div className="flex flex-1 flex-col justify-between">
-                  <div className="flex justify-between gap-4">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wider text-ink/50">
-                        {product.category}
-                      </p>
-                      <h3 className="font-sans text-base font-semibold normal-case tracking-normal">
-                        {product.name}
-                      </h3>
-                      <p className="text-sm text-ink/60">
-                        {formatPrice(product.price)} each
+                  <div className="flex flex-1 flex-col justify-between">
+                    <div className="flex justify-between gap-4">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-wider text-ink/50">
+                          {product.category}
+                        </p>
+                        <h3 className="font-sans text-base font-semibold normal-case tracking-normal">
+                          {product.name}
+                        </h3>
+                        <p className="text-sm text-ink/60">
+                          {formatPrice(product.price)} each
+                        </p>
+                      </div>
+                      <p className="text-lg font-bold">
+                        {formatPrice(product.price * quantity)}
                       </p>
                     </div>
-                    <p className="text-lg font-bold">
-                      {formatPrice(product.price * quantity)}
-                    </p>
-                  </div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center rounded-full border border-line">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center rounded-full border border-line">
+                        <button
+                          onClick={() =>
+                            updateQuantity(product.id, quantity - 1)
+                          }
+                          className="p-2 hover:text-flame cursor-pointer"
+                          aria-label="Decrease quantity"
+                        >
+                          <Minus size={16} />
+                        </button>
+                        <span className="w-8 text-center text-sm font-semibold">
+                          {quantity}
+                        </span>
+                        <button
+                          onClick={() =>
+                            updateQuantity(product.id, quantity + 1)
+                          }
+                          disabled={quantity >= product.stock}
+                          className="p-2 hover:text-flame cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
+                          aria-label="Increase quantity"
+                        >
+                          <Plus size={16} />
+                        </button>
+                      </div>
                       <button
-                        className="p-2 hover:text-flame"
-                        aria-label="Decrease quantity"
+                        onClick={() => removeFromCart(product.id)}
+                        className="text-sm text-ink/50 hover:text-flame cursor-pointer"
                       >
-                        <Minus size={16} />
-                      </button>
-                      <span className="w-8 text-center text-sm font-semibold">
-                        {quantity}
-                      </span>
-                      <button
-                        className="p-2 hover:text-flame"
-                        aria-label="Increase quantity"
-                      >
-                        <Plus size={16} />
+                        Remove
                       </button>
                     </div>
-                    <button className="text-sm text-ink/50 hover:text-flame">
-                      Remove
-                    </button>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          )}
 
           <Link
             to="/products"

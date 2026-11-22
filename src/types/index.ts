@@ -20,6 +20,8 @@ export interface Product {
   category: CategoryId;
   rating: number;
   reviews: number;
+  stock: number;
+  quantity: number;
   badge?: "New" | "Sale" | "Best Seller";
   imge: string; // tailwind gradient classes used for the placeholder image
 }
