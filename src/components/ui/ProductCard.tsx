@@ -17,13 +17,14 @@ export default function ProductCard({ product, onAddToCart }: Props) {
   const { isFavorite, toggleFavorite } = useFavorites();
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-line bg-white transition hover:shadow-xl">
-      <div
-        className={`relative aspect-square overflow-hidden bg-linear-to-br ${product.tone}`}
-      >
-        {/* Placeholder visual; swap for <img src={product.image} /> later */}
-        <span className="absolute inset-0 flex items-center justify-center font-display text-6xl font-extrabold uppercase text-white/25 transition group-hover:scale-110">
-          {product.category}
-        </span>
+   
+   <div className="relative aspect-square overflow-hidden bg-gray-100">
+  <img
+    src={product.imge}
+    alt={product.name}
+    className="h-full w-full object-contain p-4 transition duration-500 group-hover:scale-110"
+  />
+
 
         {product.badge && (
           <span

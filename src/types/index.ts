@@ -21,7 +21,7 @@ export interface Product {
   rating: number;
   reviews: number;
   badge?: "New" | "Sale" | "Best Seller";
-  tone: string; // tailwind gradient classes used for the placeholder image
+  imge: string; // tailwind gradient classes used for the placeholder image
 }
 
 export interface CartItem {

@@ -1,6 +1,7 @@
 import { products } from "@/data/products";
 import { formatPrice } from "@/utils/format";
 import PageHeader from "@/components/ui/PageHeader";
+import CheckoutButton from "@/components/checkout/CheckoutButton";
 
 // DESIGN ONLY: dummy order lines, no validation, no submit logic.
 // Logic phase: Zod schema + inline error messages (shown under each field), block when cart is empty.
@@ -118,7 +119,7 @@ export default function Checkout() {
             {dummyCart.map(({ product, quantity }) => (
               <li key={product.id} className="flex items-center gap-3">
                 <div
-                  className={`h-14 w-14 shrink-0 rounded-lg bg-linear-to-br ${product.tone}`}
+                  className={`h-14 w-14 shrink-0 rounded-lg bg-linear-to-br ${product.imge}`}
                 />
                 <div className="flex-1 text-sm">
                   <p className="font-semibold">{product.name}</p>
@@ -143,13 +144,7 @@ export default function Checkout() {
               </span>
             </div>
           </div>
-
-          <button
-            type="submit"
-            className="mt-6 w-full rounded-full bg-volt py-4 font-bold uppercase tracking-wide text-ink transition hover:bg-volt-dark"
-          >
-            Place order
-          </button>
+<CheckoutButton />
         </aside>
       </form>
     </>

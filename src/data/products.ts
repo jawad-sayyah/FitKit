@@ -44,7 +44,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 214,
     badge: "Best Seller",
-    tone: "from-steel to-ink",
+    imge: "/public/img/Adjustable_Dumbbell_Set_24kg.webp",
   },
   {
     id: 2,
@@ -54,7 +54,7 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 98,
     badge: "New",
-    tone: "from-flame to-orange-300",
+    imge: "/public/img/Resistance_Bands_5Pack.webp",
   },
   {
     id: 3,
@@ -63,7 +63,7 @@ export const products: Product[] = [
     category: "equipment",
     rating: 4.9,
     reviews: 76,
-    tone: "from-zinc-700 to-zinc-900",
+    imge: "/public/img/olympic-bar-20kg.jpg",
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 132,
     badge: "Sale",
-    tone: "from-ink to-steel",
+    imge: "/public/img/Kettlebell_16kg.jpg",
   },
   {
     id: 5,
@@ -83,7 +83,7 @@ export const products: Product[] = [
     category: "equipment",
     rating: 4.5,
     reviews: 310,
-    tone: "from-emerald-500 to-teal-300",
+    imge: "/public/img/Premium_Yoga_Mat_6mm.jpg",
   },
   {
     id: 6,
@@ -92,7 +92,7 @@ export const products: Product[] = [
     category: "equipment",
     rating: 4.4,
     reviews: 55,
-    tone: "from-steel to-zinc-500",
+    imge: "/public/img/Adjustable_Weight_Bench.jpg",
   },
 
   {
@@ -103,7 +103,7 @@ export const products: Product[] = [
     rating: 4.5,
     reviews: 187,
     badge: "New",
-    tone: "from-flame to-rose-400",
+    imge: "/public/img/Performance_Training_Tee.webp",
   },
   {
     id: 8,
@@ -114,7 +114,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 402,
     badge: "Sale",
-    tone: "from-violet-600 to-indigo-400",
+    imge: "/public/img/Seamless_Compression_Leggings.jpg",
   },
   {
     id: 9,
@@ -123,7 +123,7 @@ export const products: Product[] = [
     category: "apparel",
     rating: 4.3,
     reviews: 91,
-    tone: "from-sky-600 to-sky-300",
+    imge: "/public/img/Lightweight_Running_Shorts.jpg",
   },
   {
     id: 10,
@@ -133,7 +133,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 143,
     badge: "Best Seller",
-    tone: "from-ink to-zinc-600",
+    imge: "/public/img/Zip-Up_Training_Hoodie.jpg",
   },
   {
     id: 11,
@@ -142,7 +142,7 @@ export const products: Product[] = [
     category: "apparel",
     rating: 4.6,
     reviews: 256,
-    tone: "from-pink-500 to-rose-300",
+    imge: "/public/img/Sports_Bra_High_Support.jpg",
   },
   {
     id: 12,
@@ -151,7 +151,7 @@ export const products: Product[] = [
     category: "apparel",
     rating: 4.2,
     reviews: 64,
-    tone: "from-lime-400 to-volt",
+    imge: "/public/img/Dry-Fit_Tank_Top.jpg",
   },
 
   {
@@ -162,7 +162,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 521,
     badge: "Best Seller",
-    tone: "from-volt to-lime-200",
+    imge: "/public/img/Insulated_Water_Bottle_1L.webp",
   },
   {
     id: 14,
@@ -171,7 +171,7 @@ export const products: Product[] = [
     category: "accessories",
     rating: 4.5,
     reviews: 118,
-    tone: "from-ink to-steel",
+    imge: "/public/img/Gym_Duffel_Bag_35L.webp",
   },
   {
     id: 15,
@@ -180,7 +180,7 @@ export const products: Product[] = [
     category: "accessories",
     rating: 4.4,
     reviews: 87,
-    tone: "from-orange-500 to-flame",
+    imge: "/public/img/Lifting_Straps_Pair.jpg",
   },
   {
     id: 16,
@@ -191,7 +191,7 @@ export const products: Product[] = [
     rating: 4.1,
     reviews: 73,
     badge: "Sale",
-    tone: "from-zinc-600 to-zinc-800",
+    imge: "/public/img/Weightlifting_Gloves.jpg",
   },
   {
     id: 17,
@@ -201,7 +201,7 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 205,
     badge: "New",
-    tone: "from-volt-dark to-emerald-400",
+    imge: "/public/img/Jump_Rope_Speed_Pro.jpg",
   },
   {
     id: 18,
@@ -210,7 +210,7 @@ export const products: Product[] = [
     category: "accessories",
     rating: 4.3,
     reviews: 49,
-    tone: "from-sky-500 to-blue-700",
+    imge: "/public/img/Wrist_Wraps.jpg",
   },
 
   {
@@ -220,7 +220,7 @@ export const products: Product[] = [
     category: "recovery",
     rating: 4.6,
     reviews: 167,
-    tone: "from-sky-500 to-cyan-300",
+    imge: "/public/img/Foam_Roller_45cm.jpg",
   },
   {
     id: 20,
@@ -231,7 +231,7 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 233,
     badge: "Sale",
-    tone: "from-ink to-sky-700",
+    imge: "/public/img/Massage_Gun_Mini.webp",
   },
   {
     id: 21,
@@ -240,7 +240,7 @@ export const products: Product[] = [
     category: "recovery",
     rating: 4.4,
     reviews: 61,
-    tone: "from-teal-500 to-emerald-300",
+    imge: "/public/img/Lacrosse_Massage_Ball.jpg",
   },
 
   {
@@ -250,7 +250,7 @@ export const products: Product[] = [
     category: "nutrition",
     rating: 4.5,
     reviews: 340,
-    tone: "from-violet-500 to-fuchsia-400",
+    imge: "/public/img/Protein_Shaker_700ml.jpg",
   },
   {
     id: 23,
@@ -260,7 +260,7 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 612,
     badge: "Best Seller",
-    tone: "from-fuchsia-500 to-pink-400",
+    imge: "/public/img/Whey_Protein_2kg.webp",
   },
   {
     id: 24,
@@ -270,7 +270,7 @@ export const products: Product[] = [
     rating: 4.2,
     reviews: 98,
     badge: "New",
-    tone: "from-flame to-amber-300",
+    imge: "/public/img/Pre-Workout_Energy_300g.webp",
   },
 ];
 
