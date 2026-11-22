@@ -2,9 +2,10 @@ import { Heart, ShoppingBag, Star } from "lucide-react";
 import type { Product } from "@/types";
 import { formatPrice } from "@/utils/format";
 import { useFavorites } from "@/providers/FavoritesContext";
+import { useCart } from "@/providers/CartContext";
+import { Plus, Minus } from "lucide-react";
 interface Props {
   product: Product;
-  onAddToCart?: (product: Product) => void;
 }
 
 const badgeStyles: Record<NonNullable<Product["badge"]>, string> = {
@@ -13,8 +14,32 @@ const badgeStyles: Record<NonNullable<Product["badge"]>, string> = {
   "Best Seller": "bg-ink text-white",
 };
 
-export default function ProductCard({ product, onAddToCart }: Props) {
+// Stock level styling: green in stock, amber low stock, red out of stock
+function getStockStyles(stock: number) {
+  if (stock <= 0) {
+    return {
+      className: "bg-red-600 text-white",
+      label: "Out of stock",
+    };
+  }
+  if (stock <= 10) {
+    return {
+      className: "bg-amber-500 text-ink",
+      label: `${stock} left`,
+    };
+  }
+  return {
+    className: "bg-emerald-600 text-white",
+    label: `${stock} in stock`,
+  };
+}
+
+export default function ProductCard({ product }: Props) {
   const { isFavorite, toggleFavorite } = useFavorites();
+  const { addToCart, inCart, updateQuantity, cart } = useCart();
+  const getQty = (id: number) => cart.find((c) => c.id === id)?.quantity ?? 0;
+  const stockStyles = getStockStyles(product.stock);
+
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-line bg-white transition hover:shadow-xl">
       <div
@@ -43,6 +68,13 @@ export default function ProductCard({ product, onAddToCart }: Props) {
             className={isFavorite(product.id) ? "fill-flame text-flame" : ""}
           />
         </button>
+
+        {/* Diagonal stock tape, bottom-right corner */}
+        <span
+          className={`pointer-events-none absolute -right-10 bottom-6 z-10 -rotate-45 px-12 py-1.5 text-[11px] font-bold uppercase tracking-wider shadow-md ${stockStyles.className}`}
+        >
+          {stockStyles.label}
+        </span>
       </div>
 
       <div className="flex flex-1 flex-col p-4">
@@ -69,14 +101,37 @@ export default function ProductCard({ product, onAddToCart }: Props) {
             </span>
           )}
         </div>
-
-        <button
-          onClick={() => onAddToCart?.(product)}
-          className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-ink py-2.5 text-sm font-semibold text-white transition hover:bg-volt hover:text-ink"
-        >
-          <ShoppingBag size={16} />
-          Add to Cart
-        </button>
+        {inCart(product.id) ? (
+          <div className="mt-4 flex items-center justify-between rounded-lg border border-line">
+            <button
+              onClick={() => updateQuantity(product.id, getQty(product.id) - 1)}
+              aria-label="Decrease quantity"
+              className="flex flex-1 items-center justify-center py-2.5 text-ink transition hover:text-flame cursor-pointer"
+            >
+              <Minus size={16} />
+            </button>
+            <span className="w-8 text-center text-sm font-semibold">
+              {getQty(product.id)}
+            </span>
+            <button
+              onClick={() => updateQuantity(product.id, getQty(product.id) + 1)}
+              aria-label="Increase quantity"
+              disabled={getQty(product.id) >= product.stock}
+              className="flex flex-1 items-center justify-center py-2.5 text-ink transition hover:text-flame cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
+            >
+              <Plus size={16} />
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => addToCart(product.id)}
+            disabled={product.stock <= 0}
+            className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-ink py-2.5 text-sm font-semibold text-white transition hover:bg-volt hover:text-ink cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-ink disabled:hover:text-white"
+          >
+            <ShoppingBag size={16} />
+            {product.stock <= 0 ? "Out of Stock" : "Add to Cart"}
+          </button>
+        )}
       </div>
     </article>
   );

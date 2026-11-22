@@ -33,7 +33,6 @@ export const categories: Category[] = [
   },
 ];
 
-// Dummy data only. Real product data / images can replace this later.
 export const products: Product[] = [
   {
     id: 1,
@@ -45,6 +44,8 @@ export const products: Product[] = [
     reviews: 214,
     badge: "Best Seller",
     tone: "from-steel to-ink",
+    stock: 14,
+    quantity: 0,
   },
   {
     id: 2,
@@ -55,6 +56,8 @@ export const products: Product[] = [
     reviews: 98,
     badge: "New",
     tone: "from-flame to-orange-300",
+    stock: 0,
+    quantity: 0,
   },
   {
     id: 3,
@@ -64,6 +67,8 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 76,
     tone: "from-zinc-700 to-zinc-900",
+    stock: 8,
+    quantity: 0,
   },
   {
     id: 4,
@@ -75,6 +80,8 @@ export const products: Product[] = [
     reviews: 132,
     badge: "Sale",
     tone: "from-ink to-steel",
+    stock: 25,
+    quantity: 0,
   },
   {
     id: 5,
@@ -84,6 +91,8 @@ export const products: Product[] = [
     rating: 4.5,
     reviews: 310,
     tone: "from-emerald-500 to-teal-300",
+    stock: 47,
+    quantity: 0,
   },
   {
     id: 6,
@@ -93,6 +102,8 @@ export const products: Product[] = [
     rating: 4.4,
     reviews: 55,
     tone: "from-steel to-zinc-500",
+    stock: 11,
+    quantity: 0,
   },
 
   {
@@ -104,6 +115,8 @@ export const products: Product[] = [
     reviews: 187,
     badge: "New",
     tone: "from-flame to-rose-400",
+    stock: 83,
+    quantity: 0,
   },
   {
     id: 8,
@@ -115,6 +128,8 @@ export const products: Product[] = [
     reviews: 402,
     badge: "Sale",
     tone: "from-violet-600 to-indigo-400",
+    stock: 56,
+    quantity: 0,
   },
   {
     id: 9,
@@ -124,6 +139,8 @@ export const products: Product[] = [
     rating: 4.3,
     reviews: 91,
     tone: "from-sky-600 to-sky-300",
+    stock: 71,
+    quantity: 0,
   },
   {
     id: 10,
@@ -134,6 +151,8 @@ export const products: Product[] = [
     reviews: 143,
     badge: "Best Seller",
     tone: "from-ink to-zinc-600",
+    stock: 34,
+    quantity: 0,
   },
   {
     id: 11,
@@ -143,6 +162,8 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 256,
     tone: "from-pink-500 to-rose-300",
+    stock: 49,
+    quantity: 0,
   },
   {
     id: 12,
@@ -152,6 +173,8 @@ export const products: Product[] = [
     rating: 4.2,
     reviews: 64,
     tone: "from-lime-400 to-volt",
+    stock: 92,
+    quantity: 0,
   },
 
   {
@@ -163,6 +186,8 @@ export const products: Product[] = [
     reviews: 521,
     badge: "Best Seller",
     tone: "from-volt to-lime-200",
+    stock: 120,
+    quantity: 0,
   },
   {
     id: 14,
@@ -172,6 +197,8 @@ export const products: Product[] = [
     rating: 4.5,
     reviews: 118,
     tone: "from-ink to-steel",
+    stock: 38,
+    quantity: 0,
   },
   {
     id: 15,
@@ -181,6 +208,8 @@ export const products: Product[] = [
     rating: 4.4,
     reviews: 87,
     tone: "from-orange-500 to-flame",
+    stock: 64,
+    quantity: 0,
   },
   {
     id: 16,
@@ -192,6 +221,8 @@ export const products: Product[] = [
     reviews: 73,
     badge: "Sale",
     tone: "from-zinc-600 to-zinc-800",
+    stock: 43,
+    quantity: 0,
   },
   {
     id: 17,
@@ -202,6 +233,8 @@ export const products: Product[] = [
     reviews: 205,
     badge: "New",
     tone: "from-volt-dark to-emerald-400",
+    stock: 77,
+    quantity: 0,
   },
   {
     id: 18,
@@ -211,6 +244,8 @@ export const products: Product[] = [
     rating: 4.3,
     reviews: 49,
     tone: "from-sky-500 to-blue-700",
+    stock: 58,
+    quantity: 0,
   },
 
   {
@@ -221,6 +256,8 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 167,
     tone: "from-sky-500 to-cyan-300",
+    stock: 41,
+    quantity: 0,
   },
   {
     id: 20,
@@ -232,6 +269,8 @@ export const products: Product[] = [
     reviews: 233,
     badge: "Sale",
     tone: "from-ink to-sky-700",
+    stock: 19,
+    quantity: 0,
   },
   {
     id: 21,
@@ -241,6 +280,8 @@ export const products: Product[] = [
     rating: 4.4,
     reviews: 61,
     tone: "from-teal-500 to-emerald-300",
+    stock: 88,
+    quantity: 0,
   },
 
   {
@@ -251,6 +292,8 @@ export const products: Product[] = [
     rating: 4.5,
     reviews: 340,
     tone: "from-violet-500 to-fuchsia-400",
+    stock: 105,
+    quantity: 0,
   },
   {
     id: 23,
@@ -261,6 +304,8 @@ export const products: Product[] = [
     reviews: 612,
     badge: "Best Seller",
     tone: "from-fuchsia-500 to-pink-400",
+    stock: 27,
+    quantity: 0,
   },
   {
     id: 24,
@@ -271,6 +316,8 @@ export const products: Product[] = [
     reviews: 98,
     badge: "New",
     tone: "from-flame to-amber-300",
+    stock: 36,
+    quantity: 0,
   },
 ];
 

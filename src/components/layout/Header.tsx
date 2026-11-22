@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Heart, Menu, Search, ShoppingBag, X } from "lucide-react";
 import { useFavorites } from "@/providers/FavoritesContext";
+import { useCart } from "@/providers/CartContext";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -27,7 +28,8 @@ function CountBadge({ count, tone }: { count: number; tone: string }) {
 export default function Header() {
   const [open, setOpen] = useState(false);
   const { favorites } = useFavorites();
-  const DUMMY_CART_COUNT = 2;
+  const { cart } = useCart();
+  const CART_COUNT = cart.length;
   const WISHLIST_COUNT = favorites.length;
 
   return (
@@ -77,7 +79,7 @@ export default function Header() {
           </Link>
           <Link to="/cart" className="relative" aria-label="Cart">
             <ShoppingBag size={22} />
-            <CountBadge count={DUMMY_CART_COUNT} tone="bg-volt text-ink" />
+            <CountBadge count={CART_COUNT} tone="bg-volt text-ink" />
           </Link>
         </div>
       </div>
