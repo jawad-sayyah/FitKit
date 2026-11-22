@@ -50,9 +50,11 @@ export default function Cart() {
             <ul className="divide-y divide-line rounded-2xl border border-line">
               {cart_data.map(({ product, quantity }) => (
                 <li key={product.id} className="flex gap-4 p-4 sm:gap-6 sm:p-5">
-                  <div
-                    className={`h-24 w-24 shrink-0 rounded-xl bg-linear-to-br sm:h-28 sm:w-28 ${product.tone}`}
-                  />
+              <img
+  src={product.imge}
+  alt={product.name}
+  className="h-24 w-24 shrink-0 rounded-xl object-cover sm:h-28 sm:w-28"
+/>
 
                   <div className="flex flex-1 flex-col justify-between">
                     <div className="flex justify-between gap-4">
