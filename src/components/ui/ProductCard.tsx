@@ -101,6 +101,9 @@ export default function ProductCard({ product }: Props) {
             </span>
           )}
         </div>
+        <span className="text-xs">
+          qty: {getQty(product.id)} / stock: {product.stock}
+        </span>
         {inCart(product.id) ? (
           <div className="mt-4 flex items-center justify-between rounded-lg border border-line">
             <button

@@ -44,7 +44,7 @@ export const products: Product[] = [
     reviews: 214,
     badge: "Best Seller",
     tone: "from-steel to-ink",
-    stock: 14,
+    stock: 3,
     quantity: 0,
   },
   {

@@ -90,7 +90,8 @@ export default function Cart() {
                           onClick={() =>
                             updateQuantity(product.id, quantity + 1)
                           }
-                          className="p-2 hover:text-flame cursor-pointer"
+                          disabled={quantity >= product.stock}
+                          className="p-2 hover:text-flame cursor-pointer disabled:cursor-not-allowed disabled:opacity-40"
                           aria-label="Increase quantity"
                         >
                           <Plus size={16} />
