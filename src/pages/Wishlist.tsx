@@ -6,8 +6,8 @@ import EmptyState from "@/components/ui/EmptyState";
 import { useFavorites } from "@/providers/FavoritesContext";
 
 export default function Wishlist() {
-  const { favorites } = useFavorites();
-  const wishlist_data = products.filter((p) => favorites.includes(p.id));
+  const { isFavorite } = useFavorites();
+  const wishlist_data = products.filter((p) => isFavorite(p.id));
   return (
     <>
       <PageHeader
@@ -16,7 +16,7 @@ export default function Wishlist() {
       />
 
       <div className="mx-auto max-w-7xl px-4 py-10">
-        {favorites.length > 0 ? (
+        {wishlist_data.length > 0 ? (
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
             {wishlist_data.map((p) => (
               <ProductCard key={p.id} product={p} />
