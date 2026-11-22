@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Heart, Menu, Search, ShoppingBag, X } from "lucide-react";
+import { Heart, Menu, ShoppingBag, X } from "lucide-react";
 import { useFavorites } from "@/providers/FavoritesContext";
 import { useCart } from "@/providers/CartContext";
 
@@ -63,16 +63,16 @@ export default function Header() {
           ))}
         </nav>
 
-        <div className="ml-auto hidden w-64 items-center gap-2 rounded-full bg-white/10 px-4 py-2 md:flex">
+        {/* <div className="ml-auto hidden w-64 items-center gap-2 rounded-full bg-white/10 px-4 py-2 md:flex">
           <Search size={16} className="text-white/60" />
           <input
             type="text"
             placeholder="Search gear..."
             className="w-full bg-transparent text-sm outline-none placeholder:text-white/50"
           />
-        </div>
+        </div> */}
 
-        <div className="ml-auto flex items-center gap-5 md:ml-2">
+        <div className="ml-auto flex items-center gap-5">
           <Link to="/wishlist" className="relative" aria-label="Wishlist">
             <Heart size={22} />
             <CountBadge count={WISHLIST_COUNT} tone="bg-flame text-white" />
