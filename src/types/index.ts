@@ -9,7 +9,7 @@ export interface Category {
   id: CategoryId;
   name: string;
   tagline: string;
-  tone: string; // tailwind bg classes used for placeholder visuals
+  imge: string; // tailwind bg classes used for placeholder visuals
 }
 
 export interface Product {

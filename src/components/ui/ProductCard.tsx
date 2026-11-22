@@ -17,7 +17,7 @@ export default function ProductCard({ product, onAddToCart }: Props) {
   const { isFavorite, toggleFavorite } = useFavorites();
   return (
     <article className="group flex flex-col overflow-hidden rounded-xl border border-line bg-white transition hover:shadow-xl">
-   
+
    <div className="relative aspect-square overflow-hidden bg-gray-100">
   <img
     src={product.imge}

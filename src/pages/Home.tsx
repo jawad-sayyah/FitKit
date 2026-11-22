@@ -48,13 +48,25 @@ export default function Home() {
           </div>
 
           {/* Decorative hero collage (placeholder for real imagery) */}
-          <div className="relative hidden h-105 lg:block">
-            <div className="absolute right-0 top-0 h-64 w-64 rotate-6 rounded-3xl bg-linear-to-br from-volt to-lime-200" />
-            <div className="absolute bottom-0 left-8 h-72 w-60 -rotate-6 rounded-3xl bg-linear-to-br from-flame to-orange-300" />
-            <div className="absolute left-1/2 top-1/2 flex h-56 w-56 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-8 border-ink bg-steel font-display text-6xl font-extrabold text-volt">
-              FK
-            </div>
-          </div>
+       <div className="relative hidden h-105 lg:block">
+  <img
+    src="/img/hero1.jpg"
+    alt=""
+    className="absolute right-0 top-0 h-64 w-64 rotate-6 rounded-3xl object-cover"
+  />
+
+  <img
+    src="/img/hero2.jpg"
+    alt=""
+    className="absolute bottom-0 left-8 h-72 w-60 -rotate-6 rounded-3xl object-cover"
+  />
+
+  <img
+    src="/img/logo2.png"
+    alt=""
+    className="absolute left-1/2 top-1/2 h-56 w-56 -translate-x-1/2 -translate-y-1/2 rounded-full border-8 border-ink object-cover"
+  />
+</div>
         </div>
       </section>
 
@@ -84,20 +96,24 @@ export default function Home() {
         />
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
           {categories.map((c) => (
-            <Link
-              key={c.id}
-              to={`/products?category=${c.id}`}
-              className={`group relative flex aspect-3/4 flex-col justify-end overflow-hidden rounded-2xl bg-linear-to-br ${c.tone} p-5 text-white`}
-            >
-              <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
-              <div className="relative">
-                <h3 className="text-3xl font-extrabold">{c.name}</h3>
-                <p className="text-sm text-white/80">{c.tagline}</p>
-                <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold opacity-0 transition group-hover:opacity-100">
-                  Shop <ArrowRight size={14} />
-                </span>
-              </div>
-            </Link>
+      <Link
+  key={c.id}
+  to={`/products?category=${c.id}`}
+  className="group relative flex aspect-3/4 flex-col justify-end overflow-hidden rounded-2xl bg-cover bg-center p-5 text-white"
+  style={{ backgroundImage: `url(${c.imge})` }}
+>
+  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent transition group-hover:from-black/90" />
+
+  <div className="relative">
+    <h3 className="text-3xl font-extrabold">{c.name}</h3>
+
+    <p className="text-sm text-white/80">{c.tagline}</p>
+
+    <span className="mt-3 inline-flex items-center gap-1 text-sm font-semibold opacity-0 transition group-hover:opacity-100">
+      Shop <ArrowRight size={14} />
+    </span>
+  </div>
+</Link>
           ))}
         </div>
       </section>
