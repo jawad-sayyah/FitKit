@@ -1,38 +1,33 @@
 import { Link } from "react-router-dom";
 import { Minus, Plus, Trash2 } from "lucide-react";
-import { products } from "@/data/products";
 import { formatPrice } from "@/utils/format";
 import PageHeader from "@/components/ui/PageHeader";
 import { useCart } from "@/providers/CartContext";
 
 export default function Cart() {
-  const { cart, updateQuantity, removeFromCart, clearCart } = useCart();
-
-  // Merge cart items (id + quantity) with product data
-  const cart_data = cart.map((item) => ({
-    product: products.find((p) => p.id === item.id)!,
-    quantity: item.quantity,
-  }));
-
-  const subtotal = cart_data.reduce(
-    (sum, { product, quantity }) => sum + product.price * quantity,
-    0,
-  );
-  const shipping = subtotal > 75 || subtotal === 0 ? 0 : 6.99;
-  const total = subtotal + shipping;
+  const {
+    lines,
+    itemCount,
+    subtotal,
+    shipping,
+    total,
+    updateQuantity,
+    removeFromCart,
+    clearCart,
+  } = useCart();
 
   return (
     <>
       <PageHeader
         title="Your cart"
-        subtitle={`${cart_data.length} items ready for checkout`}
+        subtitle={`${itemCount} item${itemCount === 1 ? "" : "s"} ready for checkout`}
       />
 
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-10 lg:grid-cols-[1fr_380px]">
         <section>
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-2xl font-bold">Items</h2>
-            {cart_data.length > 0 && (
+            {lines.length > 0 && (
               <button
                 onClick={clearCart}
                 className="flex items-center gap-1 text-sm font-semibold text-flame hover:underline cursor-pointer"
@@ -42,19 +37,19 @@ export default function Cart() {
             )}
           </div>
 
-          {cart_data.length === 0 ? (
+          {lines.length === 0 ? (
             <p className="rounded-2xl border border-line p-8 text-center text-ink/60">
               Your cart is empty.
             </p>
           ) : (
             <ul className="divide-y divide-line rounded-2xl border border-line">
-              {cart_data.map(({ product, quantity }) => (
+              {lines.map(({ product, quantity }) => (
                 <li key={product.id} className="flex gap-4 p-4 sm:gap-6 sm:p-5">
-              <img
-  src={product.imge}
-  alt={product.name}
-  className="h-24 w-24 shrink-0 rounded-xl object-cover sm:h-28 sm:w-28"
-/>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="h-24 w-24 shrink-0 rounded-xl object-cover sm:h-28 sm:w-28"
+                  />
 
                   <div className="flex flex-1 flex-col justify-between">
                     <div className="flex justify-between gap-4">
@@ -140,12 +135,21 @@ export default function Cart() {
             </div>
           </dl>
 
-          <Link
-            to="/checkout"
-            className="mt-6 block rounded-full bg-ink py-4 text-center font-bold uppercase tracking-wide text-white transition hover:bg-volt hover:text-ink"
-          >
-            Proceed to checkout
-          </Link>
+          {lines.length === 0 ? (
+            <span
+              aria-disabled="true"
+              className="mt-6 block cursor-not-allowed rounded-full bg-ink/30 py-4 text-center font-bold uppercase tracking-wide text-white"
+            >
+              Proceed to checkout
+            </span>
+          ) : (
+            <Link
+              to="/checkout"
+              className="mt-6 block rounded-full bg-ink py-4 text-center font-bold uppercase tracking-wide text-white transition hover:bg-volt hover:text-ink"
+            >
+              Proceed to checkout
+            </Link>
+          )}
         </aside>
       </div>
     </>

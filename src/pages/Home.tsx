@@ -100,7 +100,7 @@ export default function Home() {
   key={c.id}
   to={`/products?category=${c.id}`}
   className="group relative flex aspect-3/4 flex-col justify-end overflow-hidden rounded-2xl bg-cover bg-center p-5 text-white"
-  style={{ backgroundImage: `url(${c.imge})` }}
+  style={{ backgroundImage: `url(${c.image})` }}
 >
   <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent transition group-hover:from-black/90" />
 

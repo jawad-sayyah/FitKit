@@ -9,7 +9,7 @@ export interface Category {
   id: CategoryId;
   name: string;
   tagline: string;
-  imge: string; // tailwind bg classes used for placeholder visuals
+  image: string;
 }
 
 export interface Product {
@@ -21,12 +21,19 @@ export interface Product {
   rating: number;
   reviews: number;
   stock: number;
-  quantity: number;
   badge?: "New" | "Sale" | "Best Seller";
-  imge: string; // tailwind gradient classes used for the placeholder image
+  image: string;
 }
 
+// What we store in the cart: only the product id and how many.
+// Full product data is looked up from the products list when needed.
 export interface CartItem {
+  id: number;
+  quantity: number;
+}
+
+// A cart item joined with its product data (used by Cart + Checkout pages)
+export interface CartLine {
   product: Product;
   quantity: number;
 }

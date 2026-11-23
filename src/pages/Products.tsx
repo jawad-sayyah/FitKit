@@ -1,11 +1,10 @@
-import { useMemo, useState } from "react";
-import { SlidersHorizontal, ChevronDown, Search } from "lucide-react";
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { SlidersHorizontal, Search } from "lucide-react";
 import { categories, products } from "@/data/products";
 import PageHeader from "@/components/ui/PageHeader";
 import ProductCard from "@/components/ui/ProductCard";
-import { useSearchParams } from "react-router-dom";
-
-type SortKey = "featured" | "price-asc" | "price-desc";
+import { filterProducts, type SortKey } from "@/utils/filterProducts";
 
 const sortOptions: { value: SortKey; label: string }[] = [
   { value: "featured", label: "Featured" },
@@ -15,44 +14,25 @@ const sortOptions: { value: SortKey; label: string }[] = [
 
 export default function Products() {
   const [search, setSearch] = useState("");
-  const [searchParams, setSearchParams] = useSearchParams();
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [sort, setSort] = useState<SortKey>("featured");
-  const [sortOpen, setSortOpen] = useState(false);
 
+  // The category lives in the URL (?category=apparel) so nav links can use it
+  const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category") ?? "all";
 
   const setCategory = (value: string) => {
-    const params = new URLSearchParams(searchParams);
-
-    if (value === "all") {
-      params.delete("category");
-    } else {
-      params.set("category", value);
-    }
-
-    setSearchParams(params);
+    setSearchParams(value === "all" ? {} : { category: value });
   };
 
-  const filtered = useMemo(() => {
-    const q = search.trim().toLowerCase();
-    const min = minPrice === "" ? -Infinity : Number(minPrice);
-    const max = maxPrice === "" ? Infinity : Number(maxPrice);
-
-    const list = products.filter((p) => {
-      const matchesSearch = q === "" || p.name.toLowerCase().includes(q);
-      const matchesCategory = category === "all" || p.category === category;
-      const matchesPrice = p.price >= min && p.price <= max;
-
-      return matchesSearch && matchesCategory && matchesPrice;
-    });
-
-    if (sort === "price-asc") list.sort((a, b) => a.price - b.price);
-    if (sort === "price-desc") list.sort((a, b) => b.price - a.price);
-
-    return list;
-  }, [search, category, minPrice, maxPrice, sort]);
+  const filtered = filterProducts(products, {
+    search,
+    category,
+    minPrice,
+    maxPrice,
+    sort,
+  });
 
   const resetFilters = () => {
     setSearch("");
@@ -61,8 +41,6 @@ export default function Products() {
     setMaxPrice("");
     setSort("featured");
   };
-
-  const selectedSort = sortOptions.find((option) => option.value === sort);
 
   return (
     <>
@@ -87,7 +65,8 @@ export default function Products() {
                 className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink/40"
               />
               <input
-                type="text"
+                type="search"
+                aria-label="Search products"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search by name..."
@@ -139,6 +118,7 @@ export default function Products() {
               <input
                 type="number"
                 min={0}
+                aria-label="Minimum price"
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
                 placeholder="Min"
@@ -148,6 +128,7 @@ export default function Products() {
               <input
                 type="number"
                 min={0}
+                aria-label="Maximum price"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
                 placeholder="Max"
@@ -173,56 +154,18 @@ export default function Products() {
               product{filtered.length === 1 ? "" : "s"}
             </p>
 
-            {/* Custom sort dropdown */}
-            <div className="relative w-52">
-              <button
-                type="button"
-                onClick={() => setSortOpen(!sortOpen)}
-                aria-expanded={sortOpen}
-                className={`flex w-full items-center justify-between rounded-lg border bg-white px-4 py-2.5 text-sm font-semibold transition ${
-                  sortOpen ? "border-ink" : "border-line hover:border-ink"
-                }`}
-              >
-                <span>{selectedSort?.label}</span>
-
-                <ChevronDown
-                  size={16}
-                  className={`transition-transform duration-200 ${
-                    sortOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
-
-              {sortOpen && (
-                <div className="absolute right-0 z-50 mt-2 w-full overflow-hidden rounded-lg border border-line bg-white p-1.5 shadow-xl">
-                  <p className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-ink/40">
-                    Sort products
-                  </p>
-
-                  {sortOptions.map((option) => (
-                    <button
-                      key={option.value}
-                      type="button"
-                      onClick={() => {
-                        setSort(option.value);
-                        setSortOpen(false);
-                      }}
-                      className={`flex w-full items-center justify-between rounded-md px-3 py-2.5 text-left text-sm transition ${
-                        sort === option.value
-                          ? "bg-volt font-bold text-ink"
-                          : "text-ink/70 hover:bg-mist hover:text-ink"
-                      }`}
-                    >
-                      {option.label}
-
-                      {sort === option.value && (
-                        <span className="font-bold">✓</span>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+            <select
+              value={sort}
+              onChange={(e) => setSort(e.target.value as SortKey)}
+              aria-label="Sort products"
+              className="w-52 cursor-pointer rounded-lg border border-line bg-white px-4 py-2.5 text-sm font-semibold outline-none hover:border-ink focus:border-ink"
+            >
+              {sortOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
 
           {filtered.length > 0 ? (

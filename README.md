@@ -1,32 +1,52 @@
-# React + TypeScript + Vite
+# FitKit — Fitness Gear Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A responsive e-commerce website for fitness equipment, apparel, accessories, recovery tools and nutrition.
+Built with React + TypeScript. It runs entirely in the browser: no backend, no database, no login, no real payments.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Home**: hero with shop button, product categories, featured products, footer
+- **Products**: responsive grid, search by name, category filter, price range filter, sort by price, "no products found" message
+- **Cart**: change quantities, remove items, clear cart, subtotal / shipping / total, empty-cart message, continue shopping, proceed to checkout
+- **Wishlist**: add/remove with the heart button (no duplicates), move items to the cart, empty message
+- **Checkout**: form with validation errors next to each field, blocked when the cart is empty, order confirmation with reference number and summary, cart cleared afterwards (wishlist is kept)
+- Cart and wishlist survive a page refresh (saved in `localStorage`)
+- Cart and wishlist counts shown in the header
+- Shipping rule: free over $75, otherwise $6.99
 
-## React Compiler
+## Technologies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+React 19, TypeScript, React Router, Tailwind CSS 4, Vite, Lucide icons, Vitest + React Testing Library.
 
-## Expanding the Oxlint configuration
+## How the code is organised
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+src/
+  pages/        Home, Products, Cart, Wishlist, Checkout, NotFound
+  components/   layout (Header, Footer...) and ui (ProductCard...)
+  providers/    CartContext and WishlistContext (shared state + localStorage)
+  utils/        pure helper functions: cart totals, product filtering, checkout validation
+  data/         the product list
+  __tests__/    automated tests
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+State is shared with React Context. Each context keeps its data in `useState` and saves it to
+`localStorage` in a `useEffect`. The cart stores only `{ id, quantity }`; product details are looked up from `data/products.ts`.
+
+## Setup
+
+```bash
+pnpm install     # or: npm install
+pnpm dev         # start the dev server (http://localhost:9999)
+pnpm test        # run the automated tests
+pnpm build       # type-check and build for production
+```
+
+## Tests
+
+`pnpm test` runs 17 tests covering product filtering/search/sort, adding to the cart,
+quantity updates, order calculations, wishlist add/remove, and checkout validation and confirmation.
+
+## Team
+
+<!-- Add team member names and who built which part -->

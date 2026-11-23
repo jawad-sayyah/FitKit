@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Heart, Menu, ShoppingBag, X } from "lucide-react";
-import { useFavorites } from "@/providers/FavoritesContext";
+import { useWishlist } from "@/providers/WishlistContext";
 import { useCart } from "@/providers/CartContext";
 
 const navLinks = [
@@ -11,8 +11,6 @@ const navLinks = [
   { to: "/products?category=apparel", label: "Apparel" },
   { to: "/products?category=accessories", label: "Accessories" },
 ];
-
-// TODO (logic phase): replace these dummy counts with the cart / wishlist store.
 
 function CountBadge({ count, tone }: { count: number; tone: string }) {
   if (count === 0) return null;
@@ -27,10 +25,8 @@ function CountBadge({ count, tone }: { count: number; tone: string }) {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const { favorites } = useFavorites();
-  const { cart } = useCart();
-  const CART_COUNT = cart.length;
-  const WISHLIST_COUNT = favorites.length;
+  const { wishlist } = useWishlist();
+  const { itemCount } = useCart();
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-ink text-white">
@@ -63,23 +59,14 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* <div className="ml-auto hidden w-64 items-center gap-2 rounded-full bg-white/10 px-4 py-2 md:flex">
-          <Search size={16} className="text-white/60" />
-          <input
-            type="text"
-            placeholder="Search gear..."
-            className="w-full bg-transparent text-sm outline-none placeholder:text-white/50"
-          />
-        </div> */}
-
         <div className="ml-auto flex items-center gap-5">
           <Link to="/wishlist" className="relative" aria-label="Wishlist">
             <Heart size={22} />
-            <CountBadge count={WISHLIST_COUNT} tone="bg-flame text-white" />
+            <CountBadge count={wishlist.length} tone="bg-flame text-white" />
           </Link>
           <Link to="/cart" className="relative" aria-label="Cart">
             <ShoppingBag size={22} />
-            <CountBadge count={CART_COUNT} tone="bg-volt text-ink" />
+            <CountBadge count={itemCount} tone="bg-volt text-ink" />
           </Link>
         </div>
       </div>

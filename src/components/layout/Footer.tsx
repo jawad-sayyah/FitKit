@@ -11,15 +11,6 @@ const columns = [
     ],
   },
   {
-    title: "Help",
-    links: [
-      { label: "Shipping & Delivery", to: "/" },
-      { label: "Returns", to: "/" },
-      { label: "Size Guide", to: "/" },
-      { label: "Contact Us", to: "/" },
-    ],
-  },
-  {
     title: "Account",
     links: [
       { label: "Wishlist", to: "/wishlist" },
@@ -32,7 +23,7 @@ const columns = [
 export default function Footer() {
   return (
     <footer className="mt-20 bg-ink text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="lg:col-span-2">
           <p className="font-display text-4xl font-extrabold uppercase">
             Fit<span className="text-volt">Kit</span>
@@ -41,19 +32,6 @@ export default function Footer() {
             Gear built for the grind. Equipment, apparel and accessories to help
             you train harder and recover smarter.
           </p>
-          <form
-            className="mt-6 flex max-w-sm overflow-hidden rounded-full bg-white/10"
-            onSubmit={(e) => e.preventDefault()}
-          >
-            <input
-              type="email"
-              placeholder="Join the newsletter"
-              className="w-full bg-transparent px-4 py-3 text-sm outline-none placeholder:text-white/50"
-            />
-            <button className="bg-volt px-5 text-sm font-bold uppercase text-ink hover:bg-volt-dark">
-              Join
-            </button>
-          </form>
         </div>
 
         {columns.map((col) => (

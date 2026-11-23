@@ -1,21 +1,25 @@
 import {
   createContext,
   useContext,
-  useState,
+  useCallback,
   useEffect,
+  useState,
   type ReactNode,
 } from "react";
+import { products } from "@/data/products";
+import type { CartItem, CartLine } from "@/types";
+import { getCartLines, getCartSummary } from "@/utils/cart";
 
 const KEY = "cart";
 
-export interface CartItem {
-  id: number;
-  quantity: number;
-}
-
 interface CartContextType {
   cart: CartItem[];
-  inCart: (id: number) => boolean;
+  lines: CartLine[]; // cart items joined with product data
+  itemCount: number;
+  subtotal: number;
+  shipping: number;
+  total: number;
+  getQuantity: (id: number) => number;
   addToCart: (id: number) => void;
   removeFromCart: (id: number) => void;
   updateQuantity: (id: number, quantity: number) => void;
@@ -24,13 +28,18 @@ interface CartContextType {
 
 const CartContext = createContext<CartContextType | null>(null);
 
+// Read the saved cart. Ignore anything that is broken or no longer a real product.
 function readCart(): CartItem[] {
   try {
-    const raw = localStorage.getItem(KEY);
-    if (!raw) return [];
-
-    const parsed = JSON.parse(raw);
-    return parsed;
+    const parsed: unknown = JSON.parse(localStorage.getItem(KEY) ?? "[]");
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter(
+      (item): item is CartItem =>
+        typeof item?.id === "number" &&
+        typeof item?.quantity === "number" &&
+        item.quantity > 0 &&
+        products.some((p) => p.id === item.id),
+    );
   } catch {
     return [];
   }
@@ -39,22 +48,25 @@ function readCart(): CartItem[] {
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>(readCart);
 
+  // Save to localStorage every time the cart changes
   useEffect(() => {
     localStorage.setItem(KEY, JSON.stringify(cart));
   }, [cart]);
 
-  const inCart = (id: number) => cart.some((item) => item.id === id);
+  const lines = getCartLines(cart);
+  const summary = getCartSummary(lines);
+
+  const getQuantity = (id: number) =>
+    cart.find((item) => item.id === id)?.quantity ?? 0;
 
   const addToCart = (id: number) => {
-    setCart((prev) => {
-      const existing = prev.find((item) => item.id === id);
-      if (existing) {
-        return prev.map((item) =>
-          item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
-        );
-      }
-      return [...prev, { id, quantity: 1 }];
-    });
+    setCart((prev) =>
+      prev.some((item) => item.id === id)
+        ? prev.map((item) =>
+            item.id === id ? { ...item, quantity: item.quantity + 1 } : item,
+          )
+        : [...prev, { id, quantity: 1 }],
+    );
   };
 
   const removeFromCart = (id: number) => {
@@ -62,22 +74,21 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const updateQuantity = (id: number, quantity: number) => {
-    if (quantity <= 0) {
-      removeFromCart(id);
-      return;
-    }
+    if (quantity <= 0) return removeFromCart(id);
     setCart((prev) =>
       prev.map((item) => (item.id === id ? { ...item, quantity } : item)),
     );
   };
 
-  const clearCart = () => setCart([]);
+  const clearCart = useCallback(() => setCart([]), []);
 
   return (
     <CartContext.Provider
       value={{
         cart,
-        inCart,
+        lines,
+        ...summary,
+        getQuantity,
         addToCart,
         removeFromCart,
         updateQuantity,
@@ -91,8 +102,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
 export function useCart() {
   const context = useContext(CartContext);
-  if (!context) {
-    throw new Error("useCart must be used within CartProvider");
-  }
+  if (!context) throw new Error("useCart must be used within CartProvider");
   return context;
 }

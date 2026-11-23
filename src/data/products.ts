@@ -5,31 +5,31 @@ export const categories: Category[] = [
     id: "equipment",
     name: "Equipment",
     tagline: "Weights, bands & benches",
-    imge: "/img/Equipment.webp",
+    image: "/img/Equipment.webp",
   },
   {
     id: "apparel",
     name: "Apparel",
     tagline: "Train in comfort",
-    imge: "/img/Apparel.webp",
+    image: "/img/Apparel.webp",
   },
   {
     id: "accessories",
     name: "Accessories",
     tagline: "Bags, bottles & straps",
-    imge: "/img/Accessories.webp",
+    image: "/img/Accessories.webp",
   },
   {
     id: "recovery",
     name: "Recovery",
     tagline: "Rollers & massage tools",
-    imge: "/img/Recovery.jpg",
+    image: "/img/Recovery.jpg",
   },
   {
     id: "nutrition",
     name: "Nutrition",
     tagline: "Shakers & supplements",
-    imge: "/img/Nutrition.jpg",
+    image: "/img/Nutrition.jpg",
   },
 ];
 
@@ -43,11 +43,10 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 214,
     badge: "Best Seller",
-    imge: "img/Adjustable_Dumbbell_Set_24kg.webp",
+    image: "/img/Adjustable_Dumbbell_Set_24kg.webp",
     stock: 3,
-    quantity: 0,
-},
-{
+  },
+  {
     id: 2,
     name: "Resistance Bands (5 Pack)",
     price: 29,
@@ -55,9 +54,8 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 98,
     badge: "New",
-    imge: "/img/Resistance_Bands_5Pack.webp",
+    image: "/img/Resistance_Bands_5Pack.webp",
     stock: 0,
-    quantity: 0,
   },
   {
     id: 3,
@@ -66,9 +64,8 @@ export const products: Product[] = [
     category: "equipment",
     rating: 4.9,
     reviews: 76,
-    imge: "/img/olympic-bar-20kg.jpg",
+    image: "/img/olympic-bar-20kg.jpg",
     stock: 0,
-    quantity: 0,
   },
   {
     id: 4,
@@ -78,9 +75,9 @@ export const products: Product[] = [
     category: "equipment",
     rating: 4.7,
     reviews: 132,
-    badge: "Sale",    imge: "/img/Kettlebell_16kg.jpg",
+    badge: "Sale",
+    image: "/img/Kettlebell_16kg.jpg",
     stock: 25,
-    quantity: 0,
   },
   {
     id: 5,
@@ -89,9 +86,8 @@ export const products: Product[] = [
     category: "equipment",
     rating: 4.5,
     reviews: 310,
-    imge: "/img/Premium_Yoga_Mat_6mm.jpg",
+    image: "/img/Premium_Yoga_Mat_6mm.jpg",
     stock: 47,
-    quantity: 0,
   },
   {
     id: 6,
@@ -100,9 +96,8 @@ export const products: Product[] = [
     category: "equipment",
     rating: 4.4,
     reviews: 55,
-    imge: "/img/Adjustable_Weight_Bench.jpg",
+    image: "/img/Adjustable_Weight_Bench.jpg",
     stock: 11,
-    quantity: 0,
   },
 
   {
@@ -113,9 +108,8 @@ export const products: Product[] = [
     rating: 4.5,
     reviews: 187,
     badge: "New",
-    imge: "/img/Performance_Training_Tee.webp",
+    image: "/img/Performance_Training_Tee.webp",
     stock: 83,
-    quantity: 0,
   },
   {
     id: 8,
@@ -126,9 +120,8 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 402,
     badge: "Sale",
-    imge: "/img/Seamless_Compression_Leggings.jpg",
+    image: "/img/Seamless_Compression_Leggings.jpg",
     stock: 56,
-    quantity: 0,
   },
   {
     id: 9,
@@ -137,9 +130,8 @@ export const products: Product[] = [
     category: "apparel",
     rating: 4.3,
     reviews: 91,
-    imge: "/img/Lightweight_Running_Shorts.jpg",
+    image: "/img/Lightweight_Running_Shorts.jpg",
     stock: 71,
-    quantity: 0,
   },
   {
     id: 10,
@@ -149,9 +141,8 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 143,
     badge: "Best Seller",
-    imge: "/img/Zip-Up_Training_Hoodie.jpg",
+    image: "/img/Zip-Up_Training_Hoodie.jpg",
     stock: 34,
-    quantity: 0,
   },
   {
     id: 11,
@@ -160,9 +151,8 @@ export const products: Product[] = [
     category: "apparel",
     rating: 4.6,
     reviews: 256,
-    imge: "/img/Sports_Bra_High_Support.jpg",
+    image: "/img/Sports_Bra_High_Support.jpg",
     stock: 49,
-    quantity: 0,
   },
   {
     id: 12,
@@ -171,9 +161,8 @@ export const products: Product[] = [
     category: "apparel",
     rating: 4.2,
     reviews: 64,
-    imge: "/img/Dry-Fit_Tank_Top.jpg",
+    image: "/img/Dry-Fit_Tank_Top.jpg",
     stock: 92,
-    quantity: 0,
   },
 
   {
@@ -184,9 +173,8 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 521,
     badge: "Best Seller",
-    imge: "/img/Insulated_Water_Bottle_1L.webp",
+    image: "/img/Insulated_Water_Bottle_1L.webp",
     stock: 120,
-    quantity: 0,
   },
   {
     id: 14,
@@ -195,9 +183,8 @@ export const products: Product[] = [
     category: "accessories",
     rating: 4.5,
     reviews: 118,
-    imge: "/img/Gym_Duffel_Bag_35L.webp",
+    image: "/img/Gym_Duffel_Bag_35L.webp",
     stock: 38,
-    quantity: 0,
   },
   {
     id: 15,
@@ -206,9 +193,8 @@ export const products: Product[] = [
     category: "accessories",
     rating: 4.4,
     reviews: 87,
-    imge: "/img/Lifting_Straps_Pair.jpg",
+    image: "/img/Lifting_Straps_Pair.jpg",
     stock: 64,
-    quantity: 0,
   },
   {
     id: 16,
@@ -219,9 +205,8 @@ export const products: Product[] = [
     rating: 4.1,
     reviews: 73,
     badge: "Sale",
-    imge: "/img/Weightlifting_Gloves.jpg",
+    image: "/img/Weightlifting_Gloves.jpg",
     stock: 43,
-    quantity: 0,
   },
   {
     id: 17,
@@ -231,9 +216,8 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 205,
     badge: "New",
-    imge: "/img/Jump_Rope_Speed_Pro.jpg",
+    image: "/img/Jump_Rope_Speed_Pro.jpg",
     stock: 77,
-    quantity: 0,
   },
   {
     id: 18,
@@ -242,9 +226,8 @@ export const products: Product[] = [
     category: "accessories",
     rating: 4.3,
     reviews: 49,
-    imge: "/img/Wrist_Wraps.jpg",
+    image: "/img/Wrist_Wraps.jpg",
     stock: 58,
-    quantity: 0,
   },
 
   {
@@ -254,9 +237,8 @@ export const products: Product[] = [
     category: "recovery",
     rating: 4.6,
     reviews: 167,
-    imge: "/img/Foam_Roller_45cm.jpg",
+    image: "/img/Foam_Roller_45cm.jpg",
     stock: 41,
-    quantity: 0,
   },
   {
     id: 20,
@@ -267,10 +249,9 @@ export const products: Product[] = [
     rating: 4.7,
     reviews: 233,
     badge: "Sale",
-    imge: "/img/Massage_Gun_Mini.webp",
+    image: "/img/Massage_Gun_Mini.webp",
 
     stock: 19,
-    quantity: 0,
   },
   {
     id: 21,
@@ -279,9 +260,8 @@ export const products: Product[] = [
     category: "recovery",
     rating: 4.4,
     reviews: 61,
-    imge: "/img/Lacrosse_Massage_Ball.jpg",
+    image: "/img/Lacrosse_Massage_Ball.jpg",
     stock: 88,
-    quantity: 0,
   },
 
   {
@@ -291,9 +271,8 @@ export const products: Product[] = [
     category: "nutrition",
     rating: 4.5,
     reviews: 340,
-    imge: "/img/Protein_Shaker_700ml.jpg",
+    image: "/img/Protein_Shaker_700ml.jpg",
     stock: 105,
-    quantity: 0,
   },
   {
     id: 23,
@@ -303,9 +282,8 @@ export const products: Product[] = [
     rating: 4.8,
     reviews: 612,
     badge: "Best Seller",
-    imge: "/img/Whey_Protein_2kg.webp",
+    image: "/img/Whey_Protein_2kg.webp",
     stock: 27,
-    quantity: 0,
   },
   {
     id: 24,
@@ -315,9 +293,8 @@ export const products: Product[] = [
     rating: 4.2,
     reviews: 98,
     badge: "New",
-    imge: "/img/Pre-Workout_Energy_300g.webp",
+    image: "/img/Pre-Workout_Energy_300g.jpg",
     stock: 36,
-    quantity: 0,
   },
 ];
 
