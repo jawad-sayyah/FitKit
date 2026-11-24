@@ -44,7 +44,7 @@ pnpm build       # type-check and build for production
 
 ## Tests
 
-`pnpm test` runs 17 tests covering product filtering/search/sort, adding to the cart,
+`pnpm test` runs 9 tests covering product filtering/search/sort, adding to the cart,
 quantity updates, order calculations, wishlist add/remove, and checkout validation and confirmation.
 
 ## Team
